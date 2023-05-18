@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the URL-Shortener</title>
+</head>
+<body>
+    <h1>Please find your shortened links below</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Short Links</th>
+                <th>View Count</th>
+                <th>Full Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>{{ link.url}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
