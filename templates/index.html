@@ -6,6 +6,17 @@
 <body>
     <h1> Welcome to the URL-Shortener</h1>
     <h3>Please enter the URL you would like to shorten below!</h3>
+    {% if request.method == 'POST' and not long_url %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
     <form action="/" method="POST">
         <label for="long_url">Long URL:</label>
         <input type="text" id="long_url" name="long_url" placeholder="Enter the long URL"><br><br>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from repo import repository, Link
 from datetime import datetime
 import random
@@ -13,15 +13,20 @@ app.secret_key = "your_secret_key"
 def index():
     if request.method == "POST":
         long_url = request.form.get("long_url")
-        random_string = " ".join(
-            random.choices(string.ascii_letters + string.digits, k=5)
-        )
-        link = Link(
-            url=long_url, hash_id=random_string, created_at=datetime.utcnow()
-        )
-        repository.create(link)
-        links_url = url_for("link_list")
-        return redirect(links_url)
+        if not long_url:
+            flash("Please enter a URL to proceed", "info")
+        if long_url:
+            random_string = " ".join(
+                random.choices(string.ascii_letters + string.digits, k=5)
+            )
+            link = Link(
+                url=long_url,
+                hash_id=random_string,
+                created_at=datetime.utcnow(),
+            )
+            repository.create(link)
+            links_url = url_for("link_list")
+            return redirect(links_url)
     return render_template("index.html")
 
 
