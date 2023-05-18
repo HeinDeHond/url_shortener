@@ -36,7 +36,7 @@ def _redirect(hash_id):
     link = repository.get(hash_id)
     if link:
         repository.update(link)
-        redirect.link(link.url)
+        return redirect(link.url)
 
 
 if __name__ == "__main__":

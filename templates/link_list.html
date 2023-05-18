@@ -17,9 +17,9 @@
         <tbody>
             {% for link in links %}
             <tr>
+                <td><a href="{{ url_for('_redirect', hash_id=link.hash_id) }}">{{ link.hash_id }}</a></td>
                 <td></td>
-                <td></td>
-                <td>{{ link.url}}</td>
+                <td><a href="{{ url_for('_redirect', hash_id=link.hash_id)}} ">{{ link.url }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
